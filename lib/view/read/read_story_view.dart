@@ -23,8 +23,13 @@ class _ReadStoryViewState extends State<ReadStoryView> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: BookAppBar(title: 'Read Story'),
+        appBar: BookAppBar(
+            onBackPressed: () {
+              Navigator.pop(context);
+            },
+            title: 'Read Story'),
         body: Container(
+          height: 800,
           width: double.infinity,
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -36,21 +41,25 @@ class _ReadStoryViewState extends State<ReadStoryView> {
               ],
             ),
           ),
-          child: Column(children: [
-            SizedBox(height: 20),
-            Text(widget.chapterName,style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w500,
-                fontSize: 26,
-                color: AppColors.fontColorDark)),
-            SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(widget.chapterStory,style: GoogleFonts.poppins(
+          child: SingleChildScrollView(
+            child: Column(children: [
+              SizedBox(height: 20),
+              Text(widget.chapterName,style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w500,
-                  fontSize: 16,
+                  fontSize: 26,
                   color: AppColors.fontColorDark)),
-            ),
-          ]),
+              SizedBox(height: 10),
+              Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Container(
+                  child: Text(widget.chapterStory,style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      color: AppColors.fontColorDark)),
+                ),
+              ),
+            ]),
+          ),
         ),
       ),
     );

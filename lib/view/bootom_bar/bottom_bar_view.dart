@@ -3,8 +3,10 @@ import 'package:book_shop/view/bootom_bar/widget/bottom_bar_item_component.dart'
 import 'package:flutter/material.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_images.dart';
+import '../../profile_view/profile_view.dart';
 import '../add_book/add_book_view.dart';
 import '../book_list/book_list_view.dart';
+import '../home/home_view.dart';
 
 
 class BottomBarView extends StatefulWidget {
@@ -122,13 +124,13 @@ class _BottomBarViewState extends State<BottomBarView> {
   _getBody() {
     switch (_selectedPage) {
       case 0:
-        return BookListView();
+        return HomeView();
       case 1:
         return BookListView();
       case 2:
         return BookListView();
       default:
-        return BookListView();
+        return ProfileView();
     }
   }
 }

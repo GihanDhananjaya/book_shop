@@ -9,6 +9,7 @@ import '../../common/app_bar.dart';
 import '../../edit_profile_view.dart';
 import '../../entity/book_list_entity.dart';
 import '../../entity/chapter_entity.dart';
+import '../../utils/navigation_routes.dart';
 import '../add_book/add_book_view.dart';
 import '../details/details_view.dart';
 
@@ -121,7 +122,7 @@ class _BookListViewState extends State<BookListView> {
           child: Column(
             children: [
               SizedBox(height: 50),
-              Text('කතා අරණ',style: GoogleFonts.poppins(
+              Text('කතා අරණ',style: GoogleFonts.arizonia(
                   fontWeight: FontWeight.w500,
                   fontSize: 26,
                   color: AppColors.fontColorDark)),
@@ -184,7 +185,8 @@ class _BookListViewState extends State<BookListView> {
                                 ),
                               ),
                             );
-                          },
+
+                            },
                           child: BookListComponent(
                             bookListEntityList: books[index],
                             onEdit: () {

@@ -37,20 +37,19 @@ class _AddChapterViewState extends State<AddChapterView> {
                   hint: "Chapter No",
                   controller: _chapterNumberController,
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 20),
                 Container(
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(14),
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
                       border: Border.all(color: AppColors.appColorAccent)),
-                  height: 500,
+                  height: 550,
                   width: double.infinity,
                   child: TextField(
                     controller: _storyController, // Use a TextField for story input
                     decoration: InputDecoration(
                       hintText: "Story",
-
                     ),
                     maxLines: null,
-
                   ),
                 ),
                 SizedBox(height: 20),

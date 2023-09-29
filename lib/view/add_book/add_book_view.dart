@@ -139,73 +139,81 @@ class _AddBookViewState extends State<AddBookView> {
               ],
             ),
           ),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        AppButton(
-                          width: 70,
-                            buttonText: 'Submit', onTapButton: (){
-                          _addBookToFirebase();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => BookListView()),
-                          );
-                        }),
-                      ],
-                    ),
-                    ProfileImageUi(title: 'Book Image',
-                        onChanged: (bytes, extension){
-                          profileImage = bytes;
-                          fileExtension = extension;
-                        }),
-                    SizedBox(height: 20),
-                    AppTextField(hint: 'name',controller: _bookNameController),
-                    SizedBox(height: 20),
-                    AppTextField(hint: 'author',controller: _authorNameController),
-                    SizedBox(height: 20),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: chapterEntityList.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Container(
-                            width: double.infinity,
-                            height: 50,
-                            decoration: BoxDecoration(
-                                color: AppColors.appColorAccent,
-                                borderRadius: BorderRadius.circular(40)),
-                            child: Center(
-                              child: Text(chapterEntityList[index].name,style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20,
-                                  color: AppColors.fontColorWhite)),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    // AppButton(
-                    //     buttonText: 'Submit', onTapButton: (){
-                    //   _addBookToFirebase();
-                    //   Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(builder: (context) => BookListView()),
-                    //   );
-                    // }),
-                    SizedBox(height: 20),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          AppButton(
+                            width: 70,
+                              buttonText: 'Submit', onTapButton: (){
+                            _addBookToFirebase();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => BookListView()),
+                            );
+                          }),
+                        ],
+                      ),
+                      ProfileImageUi(title: 'Book Image',
+                          onChanged: (bytes, extension){
+                            profileImage = bytes;
+                            fileExtension = extension;
+                          }),
+                      SizedBox(height: 20),
+                      AppTextField(hint: 'name',controller: _bookNameController),
+                      SizedBox(height: 20),
+                      AppTextField(hint: 'author',controller: _authorNameController),
+                      SizedBox(height: 20),
+                      
+                      Container(
+                        height: 300,
+                        width: double.infinity,
+                        padding: EdgeInsets.all(12),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: chapterEntityList.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                width: double.infinity,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                    color: AppColors.appColorAccent,
+                                    borderRadius: BorderRadius.circular(40)),
+                                child: Center(
+                                  child: Text(chapterEntityList[index].name,style: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 20,
+                                      color: AppColors.fontColorWhite)),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      // AppButton(
+                      //     buttonText: 'Submit', onTapButton: (){
+                      //   _addBookToFirebase();
+                      //   Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(builder: (context) => BookListView()),
+                      //   );
+                      // }),
+                      SizedBox(height: 20),
 
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         floatingActionButton: Container(
@@ -231,6 +239,7 @@ class _AddBookViewState extends State<AddBookView> {
             ],
           ),
         ),
+
       ),
     );
   }

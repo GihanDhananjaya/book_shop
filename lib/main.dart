@@ -1,16 +1,21 @@
 import 'package:book_shop/utils/app_colors.dart';
+import 'package:book_shop/view/athentication/login/login_view.dart';
 import 'package:book_shop/view/book_list/book_list_view.dart';
 import 'package:book_shop/view/bootom_bar/bottom_bar_view.dart';
+import 'package:book_shop/view/home/home_view.dart';
 import 'package:book_shop/view/splash/splash_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
   try {
     await Firebase.initializeApp(
       options: FirebaseOptions(
@@ -23,11 +28,25 @@ void main() async {
   } catch (e) {
     print('Firebase initialization error: $e');
   }
-  runApp(MyApp());
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final User? user = _auth.currentUser;
+
+  runApp(MyApp(prefs: prefs,user: user));
+}
+bool isUserLoggedIn(SharedPreferences prefs, User? user) {
+  return user != null && prefs.getBool('userLoggedIn') == true;
 }
 
+
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final SharedPreferences prefs;
+  final User? user;
+
+
+  MyApp({required this.prefs,required this.user});
+
+
 
   // This widget is the root of your application.
   @override
@@ -53,7 +72,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.colorPrimary),
         useMaterial3: true,
       ),
-      home:  BottomBarView(),
+      home:  isUserLoggedIn(prefs, user) ? BottomBarView(): LoginScreen(prefs: prefs),
     );
   }
 }

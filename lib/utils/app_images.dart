@@ -12,6 +12,12 @@ class AppImages {
   static const String appTeam = 'images/png/app_team.png';
   static const String editProfile = 'images/png/app_profile.png';
   static const String camera = 'images/png/camera.png';
+  static const String appMenu = 'images/png/app_menu_circle.png';
+
+
+  static const String appAd1 = 'images/png/add_img.png';
+  static const String appAd2 = 'images/png/add_img2.png';
+  static const String appAd3 = 'images/png/add_img3.png';
 
 
 }

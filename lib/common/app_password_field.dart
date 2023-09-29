@@ -1,11 +1,13 @@
+
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../utils/app_colors.dart';
+import '../../../../utils/app_colors.dart';
 
-class AppTextField extends StatefulWidget {
+
+class AppPasswordField extends StatefulWidget {
   final TextEditingController? controller;
   final Widget? icon;
   Widget? action;
@@ -16,7 +18,6 @@ class AppTextField extends StatefulWidget {
   final bool? isEnable;
   final int? maxLength;
   final String? guideTitle;
-  final bool? obscureText;
   final bool? shouldRedirectToNextField;
   final String? regex;
   final int? maxLines;
@@ -24,7 +25,7 @@ class AppTextField extends StatefulWidget {
   final FocusNode? focusNode;
   final Function(String)? onSubmit;
 
-  AppTextField(
+  AppPasswordField(
       {this.controller,
         this.icon,
         this.action,
@@ -39,16 +40,16 @@ class AppTextField extends StatefulWidget {
         this.focusNode,
         this.onSubmit,
         this.isEnable = true,
-        this.obscureText = false,
         this.isCurrency = false,
         this.shouldRedirectToNextField = true});
 
   @override
-  State<AppTextField> createState() => _AppTextFieldState();
+  State<AppPasswordField> createState() => _AppPasswordFieldState();
 }
 
-class _AppTextFieldState extends State<AppTextField> {
+class _AppPasswordFieldState extends State<AppPasswordField> {
   double borderRadius = 5;
+  bool obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +94,7 @@ class _AppTextFieldState extends State<AppTextField> {
           },
           focusNode: widget.focusNode,
           controller: widget.controller,
-          obscureText: widget.obscureText!,
+          obscureText: obscureText,
           textInputAction: widget.shouldRedirectToNextField!
               ? TextInputAction.next
               : TextInputAction.done,
@@ -140,10 +141,23 @@ class _AppTextFieldState extends State<AppTextField> {
               prefixIconConstraints: const BoxConstraints(
                 minWidth: 55,
               ),
-              suffixIcon: widget.action,
+              suffixIcon: InkResponse(
+                  radius: 20,
+                  onTap: () {
+                    setState(() {
+                      obscureText = !obscureText;
+                    });
+                  },
+                  child: Icon(
+                    obscureText ? Icons.visibility_off : Icons.visibility,
+                    color: obscureText
+                        ? AppColors.colorDisableWidget
+                        : AppColors.colorPrimary,
+                  )),
               filled: true,
-              hintStyle:
-              TextStyle(color: AppColors.colorDisableWidget, fontSize: 14),
+              hintStyle: TextStyle(
+                  color: AppColors.colorDisableWidget,
+                  fontSize: 14),
               fillColor: Colors.white),
         ),
       ],

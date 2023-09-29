@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'common/app_bar.dart';
 import 'common/app_button.dart';
 import 'common/app_text_field.dart';
 import 'common/image_upload_widget.dart';
@@ -102,7 +103,7 @@ class _EditProfileViewState extends State<EditProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Edit Book')),
+      appBar: BookAppBar(title:'Edit Book'),
       floatingActionButton: Container(
         decoration: BoxDecoration(color: AppColors.colorPrimary,
             borderRadius: BorderRadius.circular(40)),
@@ -129,13 +130,14 @@ class _EditProfileViewState extends State<EditProfileView> {
                   _addChapter(newChapter);
                 }
               },
-              child: Icon(Icons.add),
-              backgroundColor: AppColors.fontColorGray, // Change the color as needed
+              child: Icon(Icons.add,color: AppColors.fontColorWhite),
+              backgroundColor: AppColors.appColorAccent, // Change the color as needed
             ),
           ],
         ),
       ),
       body: Container(
+        height: 800,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.centerLeft,

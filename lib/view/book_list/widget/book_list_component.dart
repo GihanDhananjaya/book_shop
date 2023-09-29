@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../entity/book_list_entity.dart';
 
 class BookListComponent extends StatelessWidget {
-   final BookListEntity bookListEntityList;
+   final BookListEntity  bookListEntityList;
    final VoidCallback onEdit;
    final VoidCallback onDelete;
 
@@ -36,7 +36,9 @@ class BookListComponent extends StatelessWidget {
                   border: Border.all(color: AppColors.fontColorDark),
                  ),
                 child:bookListEntityList.imageUrl! != null ?
-                Image.network(bookListEntityList.imageUrl!):Icon(Icons.image_not_supported)),
+                Image.network(
+                    fit: BoxFit.cover,
+                    bookListEntityList.imageUrl!):Icon(Icons.image_not_supported)),
             SizedBox(width: 20),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,

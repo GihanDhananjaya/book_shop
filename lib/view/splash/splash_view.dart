@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/app_images.dart';
+import '../athentication/login/login_view.dart';
 import '../book_list/book_list_view.dart';
 import '../bootom_bar/bottom_bar_view.dart';
 
@@ -14,6 +16,8 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+   late final SharedPreferences prefs;
+
   @override
   void initState() {
     super.initState();
@@ -21,7 +25,7 @@ class _SplashViewState extends State<SplashView> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => BookListView(),
+          builder: (context) => LoginScreen(prefs: prefs,),
         ),
       );
     });
@@ -52,6 +56,7 @@ class _SplashViewState extends State<SplashView> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(540),
                 child: Image.asset(
+                  fit: BoxFit.cover,
                     width: 150,
                     height: 150,
                     AppImages.appLogo),

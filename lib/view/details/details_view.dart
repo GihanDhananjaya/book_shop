@@ -25,6 +25,9 @@ class _DetailsViewState extends State<DetailsView> {
     return MaterialApp(
       home: Scaffold(
         appBar: BookAppBar(
+            onBackPressed: () {
+              Navigator.pop(context);
+            },
             title: 'Chapters'),
         body: Container(
           decoration: BoxDecoration(
