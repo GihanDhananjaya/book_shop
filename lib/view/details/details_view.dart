@@ -36,21 +36,21 @@ class _DetailsViewState extends State<DetailsView> {
               end: Alignment.centerRight,     // End at the top-right corner
               colors: [
                 AppColors.fontColorWhite.withOpacity(0.5),  // Color from the bottom-left side (light yellow)
-                AppColors.colorPrimary.withOpacity(0.5),   // Color from the bottom-left side (green)
+                AppColors.colorPrimary.withOpacity(0.8),   // Color from the bottom-left side (green)
               ],
             ),
           ),
           child: SingleChildScrollView(
             child: Column(children: [
-              SizedBox(height: 20),
               Container(
                   decoration: BoxDecoration(border: Border.all(color: AppColors.appColorAccent)),
-                  child: Image.network(widget.imageUrl!,height: 150,width: 100,)),
+                  child: Image.network(widget.imageUrl!,height: 200,width: double.infinity,fit: BoxFit.cover,)),
               SizedBox(height: 10),
               Text(widget.title,style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w500,
                   fontSize: 14,
                   color: AppColors.fontColorDark)),
+              SizedBox(height: 20),
               Container(
                 height:500,
                 width: double.infinity,
@@ -69,17 +69,17 @@ class _DetailsViewState extends State<DetailsView> {
                         );
                       },
                       child: Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding:  EdgeInsets.only(left: 20.0,right: 20,bottom: 8,top: 8),
                         child: Container(
                           width: double.infinity,
                           height: 50,
                           decoration: BoxDecoration(
                               color: AppColors.appColorAccent,
-                              borderRadius: BorderRadius.circular(40)),
+                              borderRadius: BorderRadius.circular(10)),
                           child: Center(
                             child: Text('Chapter ${index + 1}: ${widget.chapters[index].name}',style: GoogleFonts.poppins(
                                 fontWeight: FontWeight.w500,
-                                fontSize: 20,
+                                fontSize: 18,
                                 color: AppColors.fontColorWhite)),
                           ),
                         ),

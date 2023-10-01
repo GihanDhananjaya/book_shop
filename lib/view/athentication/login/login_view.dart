@@ -31,11 +31,41 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final _emailAddressController = TextEditingController();
   final _passwordController = TextEditingController();
-
+  bool _isLogging = false; // Added a flag to track login state
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  Future<void> _showErrorDialog(String errorMessage) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Error'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(errorMessage),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            AppButton(
+              onTapButton: () {
+                Navigator.of(context).pop();
+              }, buttonText: 'Ok',
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
   Future<void> loginUser() async {
+    setState(() {
+      _isLogging = true; // Set the flag to true when logging in
+    });
     try {
       final UserCredential userCredential =
       await _auth.signInWithEmailAndPassword(email: email, password: password);
@@ -43,7 +73,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
       if (user != null) {
         widget.prefs!.setBool('userLoggedIn', true);
-
         // Navigate to the home screen or another screen after login
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => BottomBarView()),
@@ -51,7 +80,22 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     } catch (e) {
       // Handle login errors
-      print(e.toString());
+      String errorMessage = 'An error occurred. Please try again.';
+
+      // You can check the specific error code to display custom messages
+      if (e is FirebaseAuthException) {
+        if (e.code == 'user-not-found') {
+          errorMessage = 'No user found with this email address.';
+        } else if (e.code == 'wrong-password') {
+          errorMessage = 'Wrong password. Please try again.';
+        }
+      }
+
+      _showErrorDialog(errorMessage);
+    }finally {
+      setState(() {
+        _isLogging = false; // Set the flag to false when login process completes
+      });
     }
   }
 
@@ -118,8 +162,12 @@ class _LoginScreenState extends State<LoginScreen> {
               //   decoration: InputDecoration(labelText: 'Password'),
               // ),
               SizedBox(height: 50),
-              AppButton(buttonText: 'Login',
-                onTapButton: loginUser,),
+              _isLogging
+                  ? CircularProgressIndicator()
+                  : AppButton(
+                buttonText: 'Login',
+                onTapButton: loginUser,
+              ),
               // ElevatedButton(
               //   onPressed: loginUser,
               //   child: Text('Login'),

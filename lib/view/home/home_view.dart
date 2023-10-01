@@ -18,6 +18,8 @@ import '../details/details_view.dart';
 // Other imports...
 
 class HomeView extends StatefulWidget {
+  get prefs => null;
+
   @override
   State<HomeView> createState() => _HomeViewState();
 }
@@ -31,10 +33,21 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
+    setState(() {});
     super.initState();
     // Fetch user data from Firestore when the widget is initialized
     _fetchUserData();
   }
+
+  // Future<void> logout() async {
+  //   // Add logout logic here (e.g., sign out the user)
+  //   // ...
+  //   widget.prefs!.setBool('userLoggedIn', false);
+  //   Navigator.of(context).pushReplacement(
+  //     MaterialPageRoute(builder: (context) => LoginScreen(prefs: widget.prefs)),
+  //   );
+  // }
+
 
   // Function to fetch user data from Firestore
   void _fetchUserData() async {
@@ -61,7 +74,9 @@ class _HomeViewState extends State<HomeView> {
         break;
       case 'Option 2':
          FirebaseAuth.instance.signOut().then((value) => {
-         Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),))
+             Navigator.of(context).pushReplacement(
+           MaterialPageRoute(builder: (context) => LoginScreen(prefs: widget.prefs)),
+         ),
          });
         break;
       case 'Option 3':
@@ -158,7 +173,7 @@ class _HomeViewState extends State<HomeView> {
               end: Alignment.centerRight,
               colors: [
                 AppColors.fontColorWhite.withOpacity(0.5),
-                AppColors.colorPrimary.withOpacity(0.5),
+                AppColors.colorPrimary.withOpacity(0.8),
               ],
             ),
           ),

@@ -24,7 +24,7 @@ class _AddChapterViewState extends State<AddChapterView> {
             end: Alignment.centerRight,     // End at the top-right corner
             colors: [
               AppColors.fontColorWhite.withOpacity(0.5),  // Color from the bottom-left side (light yellow)
-              AppColors.colorPrimary.withOpacity(0.5),   // Color from the bottom-left side (green)
+              AppColors.colorPrimary.withOpacity(0.8),   // Color from the bottom-left side (green)
             ],
           ),
         ),

@@ -31,7 +31,10 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BookAppBar(title: 'Edit Profile'),
+      appBar: AppBar(
+          backgroundColor: AppColors.colorPrimary,
+          title: Text('Book Management',style: TextStyle(color: AppColors.fontColorWhite),)
+      ),
       body: Container(
         decoration: BoxDecoration(gradient: LinearGradient(
           begin: Alignment.centerLeft, // Start from the bottom-left corner

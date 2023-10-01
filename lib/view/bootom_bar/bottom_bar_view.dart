@@ -24,10 +24,11 @@ class _BottomBarViewState extends State<BottomBarView> {
       backgroundColor: AppColors.colorPrimary,
       body: _getBody(),
       bottomNavigationBar: BottomAppBar(
-        clipBehavior: Clip.antiAlias,
-        padding: const EdgeInsets.only(top: 10),
+        height: 60,
+        clipBehavior: Clip.hardEdge,
+        padding: const EdgeInsets.only(top: 5),
         color: AppColors.appColorAccent,
-        elevation: 5,
+        elevation: 1,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

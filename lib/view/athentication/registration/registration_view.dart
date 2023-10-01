@@ -112,71 +112,75 @@ class _RegistrationLoginScreenState extends State<RegistrationLoginScreen> {
             ],
           ),
         ),
-        child: Padding(
-          padding: EdgeInsets.all(26.0),
-          child: Column(
-            children: [
-              SizedBox(height: 50,),
-              Text('User Registration',style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 26,
-                  color: AppColors.fontColorDark)),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(26.0),
+            child: Column(
+              children: [
+                SizedBox(height: 50,),
+                Text('User Registration',style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 26,
+                    color: AppColors.fontColorDark)),
 
-              SizedBox(height: 20),
-              AppTextField(
-                onTextChanged: (value) {
-                  setState(() {
-                    _userName = value;
-                  });
-                },
-                hint: "User Name",
-              ),
-              SizedBox(height: 10),
-              AppTextField(
-                onTextChanged: (value) {
-                  setState(() {
-                    _email = value;
-                  });
-                },
-                hint: "Email Address",
-              ),
-              SizedBox(height: 10),
-              AppTextField(
-                onTextChanged: (value) {
-                  setState(() {
-                    _phoneNumber = value;
-                  });
-                },
-                hint: "Phone Number",
-              ),
-              SizedBox(height: 10),
-              AppPasswordField(
-                onTextChanged: (value) {
-                  setState(() {
-                    _password = value;
-                  });
-                },
-                hint: "Password",
-              ),
-              SizedBox(height: 10),
-              AppPasswordField(
-                onTextChanged: (value) {
-                  setState(() {
-                    _confirmPassword = value;
-                  });
-                },
-                hint: "Confirm Password",
-              ),
-              SizedBox(height: 80,),
-              // ElevatedButton(
-              //   onPressed: _isRegistering ? null : _registerUser,
-              //   child: _isRegistering
-              //       ? CircularProgressIndicator()
-              //       : Text('Register'),
-              // ),
-              AppButton(buttonText: "Register",
-                  onTapButton: _registerUser)
-            ],
+                SizedBox(height: 20),
+                AppTextField(
+                  onTextChanged: (value) {
+                    setState(() {
+                      _userName = value;
+                    });
+                  },
+                  hint: "User Name",
+                ),
+                SizedBox(height: 10),
+                AppTextField(
+                  onTextChanged: (value) {
+                    setState(() {
+                      _email = value;
+                    });
+                  },
+                  hint: "Email Address",
+                ),
+                SizedBox(height: 10),
+                AppTextField(
+                  onTextChanged: (value) {
+                    setState(() {
+                      _phoneNumber = value;
+                    });
+                  },
+                  hint: "Phone Number",
+                ),
+                SizedBox(height: 10),
+                AppPasswordField(
+                  onTextChanged: (value) {
+                    setState(() {
+                      _password = value;
+                    });
+                  },
+                  hint: "Password",
+                ),
+                SizedBox(height: 10),
+                AppPasswordField(
+                  onTextChanged: (value) {
+                    setState(() {
+                      _confirmPassword = value;
+                    });
+                  },
+                  hint: "Confirm Password",
+                ),
+                SizedBox(height: 250,),
+                // ElevatedButton(
+                //   onPressed: _isRegistering ? null : _registerUser,
+                //   child: _isRegistering
+                //       ? CircularProgressIndicator()
+                //       : Text('Register'),
+                // ),
+                AppButton(buttonText: "Register",
+                    onTapButton: _registerUser
+
+                )
+              ],
+            ),
           ),
         ),
       ),

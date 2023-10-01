@@ -108,6 +108,10 @@ class _BookListViewState extends State<BookListView> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+            backgroundColor: AppColors.colorPrimary,
+            title: Text('Book Management')
+        ),
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -115,18 +119,18 @@ class _BookListViewState extends State<BookListView> {
               end: Alignment.centerRight,
               colors: [
                 AppColors.fontColorWhite.withOpacity(0.5),
-                AppColors.colorPrimary.withOpacity(0.5),
+                AppColors.colorPrimary.withOpacity(0.8),
               ],
             ),
           ),
           child: Column(
             children: [
               SizedBox(height: 50),
-              Text('කතා අරණ',style: GoogleFonts.arizonia(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 26,
-                  color: AppColors.fontColorDark)),
-              SizedBox(height: 10),
+              // Text('කතා අරණ',style: GoogleFonts.arizonia(
+              //     fontWeight: FontWeight.w500,
+              //     fontSize: 26,
+              //     color: AppColors.fontColorDark)),
+              // SizedBox(height: 10),
               StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance.collection('books1').snapshots(),
                 builder: (context, snapshot) {

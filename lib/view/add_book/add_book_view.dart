@@ -64,6 +64,7 @@ class _AddBookViewState extends State<AddBookView> {
             .map((chapter) => {
           'name': chapter.name,
           'story': chapter.story,
+          'commentList': chapter.commentList?.map((comment) => comment.toMap()).toList(),
         })
             .toList();
 
@@ -127,7 +128,9 @@ class _AddBookViewState extends State<AddBookView> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: BookAppBar(title: 'Add Your Book'),
+        appBar: BookAppBar(title: 'Add Your Book', onBackPressed: () {
+          Navigator.pop(context);
+        },),
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -135,7 +138,7 @@ class _AddBookViewState extends State<AddBookView> {
               end: Alignment.centerRight,     // End at the top-right corner
               colors: [
                 AppColors.fontColorWhite.withOpacity(0.5),  // Color from the bottom-left side (light yellow)
-                AppColors.colorPrimary.withOpacity(0.5),   // Color from the bottom-left side (green)
+                AppColors.colorPrimary.withOpacity(0.8),   // Color from the bottom-left side (green)
               ],
             ),
           ),
